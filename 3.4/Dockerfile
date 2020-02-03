@@ -21,6 +21,9 @@ RUN apt-get -y update -qq && \
 
 WORKDIR /app
 
+# Copy Tuned Postgres.conf
+COPY postgresql.conf /etc/postgresql/11/main/postgresql.conf
+
 # Configure postgres
 RUN echo "host all  all    0.0.0.0/0  trust" >> /etc/postgresql/11/main/pg_hba.conf && \
     echo "listen_addresses='*'" >> /etc/postgresql/11/main/postgresql.conf
